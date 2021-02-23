@@ -6,6 +6,14 @@ const blackkeys = ["cd", "ed", "fg", "ga", "ab"];
 
 var thisthing = 0;
 
+function Checker(array, index, answer) {
+  if (answer === array[index]) {
+    console.log("correct");
+  } else {
+    console.log("wrong");
+  }
+}
+
 function godPleaseWork(count) {
   if (count > 2) {
     return 54 * (count + 1) - 15;
@@ -16,6 +24,7 @@ function godPleaseWork(count) {
 function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
+  Checker(Data.notesDisplayed, Data.indexd, Data.pianoClickedKey);
   console.log("clickedKey:", Data.pianoClickedKey, "index:", Data.indexd);
   Data.indexd++;
 }

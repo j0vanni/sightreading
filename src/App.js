@@ -1,6 +1,7 @@
 import "./App.css";
 import Data from "./Data";
 import Piano from "./Piano";
+import SheetMusic from "@slnsw/react-sheet-music";
 
 const noteslist = ["a", "b", "c"];
 const notesListed = ["a", "b", "c", "d", "e", "f", "g"];
@@ -24,6 +25,7 @@ function App() {
   return (
     <div style={{ color: "white" }}>
       <p>hello</p>
+      <SheetMusic notation="|ABC|"></SheetMusic>
       <p>piano v</p>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Piano onClick={() => console.log(Data.pianoClickedKey)} />
