@@ -1,4 +1,5 @@
 import React from "react";
+import Data from "./Data";
 
 const notes = ["c", "d", "e", "f", "g", "a", "b"];
 const blackkeys = ["cd", "ed", "fg", "ga", "ab"];
@@ -12,6 +13,13 @@ function godPleaseWork(count) {
   return 54 * count - 15;
 }
 
+function setPianoClick(item) {
+  Data.pianoClickedKey = "";
+  Data.pianoClickedKey = item;
+  console.log("clickedKey:", Data.pianoClickedKey, "index:", Data.indexd);
+  Data.indexd++;
+}
+
 function Piano(props) {
   return (
     <div style={{ display: "flex", position: "absolute" }}>
@@ -20,7 +28,7 @@ function Piano(props) {
           <div key={item}>
             <div
               style={StyleSheet.whitekeys}
-              onClick={() => console.log(item)}
+              onClick={() => setPianoClick(item)}
             />
           </div>
         );
@@ -30,13 +38,13 @@ function Piano(props) {
           <div
             style={{
               position: "absolute",
-              left: `${godPleaseWork(key + 1)}px`,
+              left: `${godPleaseWork(key + 1)}px`
             }}
             key={item}
           >
             <div
               style={StyleSheet.blackkeys}
-              onClick={() => console.log(item)}
+              onClick={() => setPianoClick(item)}
             />
             {item.at}
           </div>
@@ -54,7 +62,7 @@ const StyleSheet = {
     borderColor: "white",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "black",
+    backgroundColor: "black"
   },
   whitekeys: {
     width: "50px",
@@ -63,8 +71,8 @@ const StyleSheet = {
     borderColor: "black",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "white",
-  },
+    backgroundColor: "white"
+  }
 };
 
 export default Piano;
