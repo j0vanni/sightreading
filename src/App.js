@@ -25,6 +25,7 @@ function App() {
   return (
     <div style={{ color: "white" }}>
       <p>hello</p>
+      <SheetMusic notation="Abc" />
       <p>piano v</p>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Piano onClick={() => console.log(Data.pianoClickedKey)} />
