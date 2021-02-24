@@ -1,9 +1,9 @@
 export default {
   notesDisplayed: [],
   notesDisplayedString: "",
-  correctNote: "fdsaf",
+  correctNote: "placeholder",
   pianoClickedKey: "",
   indexd: 0,
   opacity: 0,
-  rightorWrong: "dlka;sfj;"
+  rightorWrong: "placeholder"
 };

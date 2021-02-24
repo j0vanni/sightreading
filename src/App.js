@@ -22,7 +22,48 @@ const notesListed = [
   "F",
   "G"
 ];
+
+const notesListedSharps = [
+  "^a",
+  "^b",
+  "^c",
+  "^d",
+  "^e",
+  "^f",
+  "^g",
+  "^A",
+  "^B",
+  "^C",
+  "^D",
+  "^E",
+  "^F",
+  "^G"
+];
+
+const notesListedFlats = [
+  "_a",
+  "_b",
+  "_c",
+  "_d",
+  "_e",
+  "_f",
+  "_g",
+  "_A",
+  "_B",
+  "_C",
+  "_D",
+  "_E",
+  "_F",
+  "_G"
+];
+
 var wrongorRight = "----";
+
+//add !mark! before the note to hightlight it
+//would be good for the user to keep track on which note
+//they are on
+
+//^ - sharp, _ - flat
 
 function createRandomNotesArray(amount) {
   Data.opacity = 0;
@@ -31,10 +72,9 @@ function createRandomNotesArray(amount) {
   for (var i = 0; i < amount; i++) {
     var rand = Math.floor(Math.random() * notesListed.length);
     Data.notesDisplayed.push(notesListed[rand]);
-    Data.notesDisplayedString += `${notesListed[rand]} `;
+    Data.notesDisplayedString += `${notesListed[rand]}2`;
   }
   Data.indexd = 0;
-  console.log("random notes created", Data.notesDisplayedString);
 }
 createRandomNotesArray(10);
 

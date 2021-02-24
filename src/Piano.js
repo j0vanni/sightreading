@@ -16,6 +16,7 @@ function Checker(array, index, answer) {
     Data.opacity = 1;
     Data.rightorWrong = "Wrong.";
   }
+  index++;
 }
 
 function godPleaseWork(count) {
