@@ -34,6 +34,7 @@ function createRandomNotesArray(amount) {
     Data.notesDisplayedString += `${notesListed[rand]} `;
   }
   Data.indexd = 0;
+  console.log("random notes created", Data.notesDisplayedString);
 }
 createRandomNotesArray(10);
 
@@ -42,7 +43,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       opacity: Data.opacity,
-      rightorWrong: Data.rightorWrong
+      rightorWrong: Data.rightorWrong,
+      notestoDisplay: Data.notesDisplayedString
     };
   }
 
@@ -64,7 +66,7 @@ class App extends React.Component {
           }}
         >
           <Notation
-            notation={Data.notesDisplayedString}
+            notation={this.state.notestoDisplay}
             engraverParams={{ scale: window.innerWidth / 500 }}
           />
         </div>
@@ -109,7 +111,15 @@ class App extends React.Component {
           }}
         >
           <div style={{ position: "absolute", top: "75%" }}>
-            <Button variant="contained">New Notes</Button>
+            <Button
+              variant="contained"
+              onClick={() => {
+                createRandomNotesArray(10);
+                this.setState({ notestoDisplay: Data.notesDisplayedString });
+              }}
+            >
+              New Notes
+            </Button>
           </div>
         </div>
       </div>
