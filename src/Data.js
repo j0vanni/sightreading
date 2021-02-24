@@ -5,5 +5,7 @@ export default {
   pianoClickedKey: "",
   indexd: 0,
   opacity: 0,
-  rightorWrong: "placeholder"
+  rightorWrong: "placeholder",
+  isSharp: false,
+  isFlat: false,
 };

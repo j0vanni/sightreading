@@ -20,7 +20,7 @@ const notesListed = [
   "D",
   "E",
   "F",
-  "G"
+  "G",
 ];
 
 const notesListedSharps = [
@@ -37,7 +37,7 @@ const notesListedSharps = [
   "^D",
   "^E",
   "^F",
-  "^G"
+  "^G",
 ];
 
 const notesListedFlats = [
@@ -54,7 +54,7 @@ const notesListedFlats = [
   "_D",
   "_E",
   "_F",
-  "_G"
+  "_G",
 ];
 
 var wrongorRight = "----";
@@ -70,9 +70,9 @@ function createRandomNotesArray(amount) {
   Data.notesDisplayed = [];
   Data.notesDisplayedString = "";
   for (var i = 0; i < amount; i++) {
-    var rand = Math.floor(Math.random() * notesListed.length);
-    Data.notesDisplayed.push(notesListed[rand]);
-    Data.notesDisplayedString += `${notesListed[rand]}2`;
+    var rand = Math.floor(Math.random() * notesListedSharps.length);
+    Data.notesDisplayed.push(notesListedSharps[rand]);
+    Data.notesDisplayedString += `${notesListedSharps[rand]}2`;
   }
   Data.indexd = 0;
 }
@@ -84,7 +84,7 @@ class App extends React.Component {
     this.state = {
       opacity: Data.opacity,
       rightorWrong: Data.rightorWrong,
-      notestoDisplay: Data.notesDisplayedString
+      notestoDisplay: Data.notesDisplayedString,
     };
   }
 
@@ -102,7 +102,7 @@ class App extends React.Component {
           style={{
             display: "flex",
             backgroundColor: "white",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <Notation
@@ -117,7 +117,7 @@ class App extends React.Component {
           style={{
             display: "flex",
             opacity: Data.opacity,
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           {this.state.rightorWrong}
@@ -128,7 +128,7 @@ class App extends React.Component {
           style={{
             display: "flex",
             opacity: Data.opacity,
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           {Data.correctNote.toUpperCase()}
@@ -138,7 +138,7 @@ class App extends React.Component {
           onClick={() =>
             this.setState({
               opacity: Data.opacity,
-              rightorWrong: Data.rightorWrong
+              rightorWrong: Data.rightorWrong,
             })
           }
         >
@@ -147,7 +147,7 @@ class App extends React.Component {
         <div
           style={{
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
           }}
         >
           <div style={{ position: "absolute", top: "75%" }}>

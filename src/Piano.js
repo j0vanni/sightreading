@@ -6,17 +6,67 @@ const blackkeys = ["cd", "ed", "fg", "ga", "ab"];
 
 var thisthing = 0;
 
+function correct() {
+  Data.opacity = 1;
+  Data.rightorWrong = "Correct.";
+}
+
+function wrong() {
+  Data.opacity = 1;
+  Data.rightorWrong = "Wrong.";
+}
+
 function Checker(array, index, answer) {
   Data.correctNote = array[index];
-  var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
-  if (tempAnswer) {
-    Data.opacity = 1;
-    Data.rightorWrong = "Correct.";
-  } else {
-    Data.opacity = 1;
-    Data.rightorWrong = "Wrong.";
+  console.log(array[index]);
+
+  if (array[index].substring(0, 1) === "^") {
+    Data.isSharp = true;
+    terribleSharpChecker(array[index].substring(1, 2), answer);
   }
-  index++;
+
+  if (array[index] === "_") {
+    Data.isFlat = true;
+  }
+
+  if (Data.isSharp === false || Data.isFlat === false) {
+    var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
+    if (tempAnswer) {
+      correct();
+    } else {
+      wrong();
+    }
+    index++;
+  } else if (Data.isSharp === true) {
+    index++;
+    terribleSharpChecker(array[index], answer);
+  }
+}
+
+function terribleSharpChecker(note, answer) {
+  console.log("answer is a sharp");
+  var capNote = note.toUpperCase();
+  var answerNote = answer.toUpperCase();
+
+  console.log(capNote, answerNote);
+
+  if (capNote === "C" && answerNote === "CD") {
+    correct();
+  } else if (capNote === "D" && answerNote === "ED") {
+    correct();
+  } else if (capNote === "E" && answerNote === "F") {
+    correct();
+  } else if (capNote === "F" && answerNote === "FG") {
+    correct();
+  } else if (capNote === "G" && answerNote === "GA") {
+    correct();
+  } else if (capNote === "A" && answerNote === "AB") {
+    correct();
+  } else if (capNote === "B" && answerNote === "C") {
+    correct();
+  } else {
+    wrong();
+  }
 }
 
 function godPleaseWork(count) {
@@ -52,7 +102,7 @@ function Piano(props) {
           <div
             style={{
               position: "absolute",
-              left: `${godPleaseWork(key + 1)}px`
+              left: `${godPleaseWork(key + 1)}px`,
             }}
             key={item}
           >
@@ -76,7 +126,7 @@ const StyleSheet = {
     borderColor: "white",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "black"
+    backgroundColor: "black",
   },
   whitekeys: {
     width: "50px",
@@ -85,8 +135,8 @@ const StyleSheet = {
     borderColor: "black",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "white"
-  }
+    backgroundColor: "white",
+  },
 };
 
 export default Piano;
