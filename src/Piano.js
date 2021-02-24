@@ -7,10 +7,13 @@ const blackkeys = ["cd", "ed", "fg", "ga", "ab"];
 var thisthing = 0;
 
 function Checker(array, index, answer) {
-  if (answer === array[index]) {
-    console.log("correct");
+  var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
+  if (tempAnswer) {
+    Data.opacity = 1;
+    Data.rightorWrong = "Correct";
   } else {
-    console.log("wrong");
+    Data.opacity = 1;
+    Data.rightorWrong = "Wrong";
   }
 }
 
@@ -25,8 +28,8 @@ function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
   Checker(Data.notesDisplayed, Data.indexd, Data.pianoClickedKey);
-  console.log("clickedKey:", Data.pianoClickedKey, "index:", Data.indexd);
   Data.indexd++;
+  Data.opacity = 1;
 }
 
 function Piano(props) {
@@ -47,7 +50,7 @@ function Piano(props) {
           <div
             style={{
               position: "absolute",
-              left: `${godPleaseWork(key + 1)}px`
+              left: `${godPleaseWork(key + 1)}px`,
             }}
             key={item}
           >
@@ -71,7 +74,7 @@ const StyleSheet = {
     borderColor: "white",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "black"
+    backgroundColor: "black",
   },
   whitekeys: {
     width: "50px",
@@ -80,8 +83,8 @@ const StyleSheet = {
     borderColor: "black",
     borderRadius: "5px",
     borderWidth: "2px",
-    backgroundColor: "white"
-  }
+    backgroundColor: "white",
+  },
 };
 
 export default Piano;
