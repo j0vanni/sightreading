@@ -2,6 +2,7 @@ import "./App.css";
 import React from "react";
 import Data from "./Data";
 import Piano from "./Piano";
+import { Button } from "@material-ui/core";
 import { Notation } from "react-abc";
 
 const noteslist = ["a", "b", "c"];
@@ -19,14 +20,9 @@ const notesListed = [
   "D",
   "E",
   "F",
-  "G",
+  "G"
 ];
 var wrongorRight = "----";
-var markPositioned = 1;
-
-function notePositional(count) {
-  return 67 * count + 177.5;
-}
 
 function createRandomNotesArray(amount) {
   Data.opacity = 0;
@@ -46,8 +42,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       opacity: Data.opacity,
-      rightorWrong: Data.rightorWrong,
-      markPosition: 0,
+      rightorWrong: Data.rightorWrong
     };
   }
 
@@ -65,22 +60,25 @@ class App extends React.Component {
           style={{
             display: "flex",
             backgroundColor: "white",
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
           <Notation
-            animate
             notation={Data.notesDisplayedString}
             engraverParams={{ scale: window.innerWidth / 500 }}
           />
         </div>
+
         <p
+          unselectable="on"
+          className="answerDisplay"
           style={{
-            position: "absolute",
-            left: `${this.state.markPositional}px`,
+            display: "flex",
+            opacity: Data.opacity,
+            justifyContent: "center"
           }}
         >
-          |
+          {this.state.rightorWrong}
         </p>
         <p
           unselectable="on"
@@ -88,24 +86,31 @@ class App extends React.Component {
           style={{
             display: "flex",
             opacity: Data.opacity,
-            justifyContent: "center",
+            justifyContent: "center"
           }}
         >
-          {this.state.rightorWrong}
+          {Data.correctNote.toUpperCase()}
         </p>
         <div
           style={{ display: "flex", justifyContent: "center" }}
-          onClick={
-            (() =>
-              this.setState({
-                opacity: Data.opacity,
-                rightorWrong: Data.rightorWrong,
-                markPosition: notePositional(markPositioned),
-              }),
-            markPositioned++)
+          onClick={() =>
+            this.setState({
+              opacity: Data.opacity,
+              rightorWrong: Data.rightorWrong
+            })
           }
         >
           <Piano />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center"
+          }}
+        >
+          <div style={{ position: "absolute", top: "75%" }}>
+            <Button variant="contained">New Notes</Button>
+          </div>
         </div>
       </div>
     );
