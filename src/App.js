@@ -73,10 +73,55 @@ function createRandomNotesArray(amount) {
   Data.opacity = 0;
   Data.notesDisplayed = [];
   Data.notesDisplayedString = "";
-  for (var i = 0; i < amount; i++) {
-    var rand = Math.floor(Math.random() * notesListed.length);
-    Data.notesDisplayed.push(notesListed[rand]);
-    Data.notesDisplayedString += `${notesListed[rand]}2`;
+  if (Data.isFlat === false && Data.isSharp === false) {
+    for (var i = 0; i < amount; i++) {
+      var rand = Math.floor(Math.random() * notesListed.length);
+      Data.notesDisplayed.push(notesListed[rand]);
+      Data.notesDisplayedString += `${notesListed[rand]}2`;
+    }
+  } else if (Data.isFlat === true && Data.isSharp === false) {
+    for (var i = 0; i < amount; i++) {
+      var randDecision = Math.floor(Math.random() * 2);
+      var rand = Math.floor(Math.random() * notesListed.length);
+      var randFlats = Math.floor(Math.random() * notesListedFlats.length);
+      if (randDecision === 0) {
+        Data.notesDisplayed.push(notesListed[rand]);
+        Data.notesDisplayedString += `${notesListed[rand]}2`;
+      } else {
+        Data.notesDisplayed.push(notesListedFlats[randFlats]);
+        Data.notesDisplayedString += `${notesListedFlats[randFlats]}2`;
+      }
+    }
+  } else if (Data.isFlat === false && Data.isSharp === true) {
+    for (var i = 0; i < amount; i++) {
+      var randDecision = Math.floor(Math.random() * 2);
+      var rand = Math.floor(Math.random() * notesListed.length);
+      var randSharps = Math.floor(Math.random() * notesListedSharps.length);
+      if (randDecision === 0) {
+        Data.notesDisplayed.push(notesListed[rand]);
+        Data.notesDisplayedString += `${notesListed[rand]}2`;
+      } else {
+        Data.notesDisplayed.push(notesListedSharps[randSharps]);
+        Data.notesDisplayedString += `${notesListedSharps[randSharps]}2`;
+      }
+    }
+  } else {
+    for (var i = 0; i < amount; i++) {
+      var randDecision = Math.floor(Math.random() * 3);
+      var rand = Math.floor(Math.random() * notesListed.length);
+      var randSharps = Math.floor(Math.random() * notesListedSharps.length);
+      var randFlats = Math.floor(Math.random() * notesListedFlats.length);
+      if (randDecision === 0) {
+        Data.notesDisplayed.push(notesListed[rand]);
+        Data.notesDisplayedString += `${notesListed[rand]}2`;
+      } else if (randDecision === 1) {
+        Data.notesDisplayed.push(notesListedSharps[randSharps]);
+        Data.notesDisplayedString += `${notesListedSharps[randSharps]}2`;
+      } else {
+        Data.notesDisplayed.push(notesListedFlats[randFlats]);
+        Data.notesDisplayedString += `${notesListedFlats[randFlats]}2`;
+      }
+    }
   }
   Data.indexd = 0;
   console.log(Data.notesDisplayed);
