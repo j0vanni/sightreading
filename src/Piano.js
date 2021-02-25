@@ -2,7 +2,7 @@ import React from "react";
 import Data from "./Data";
 
 const notes = ["c", "d", "e", "f", "g", "a", "b"];
-const blackkeys = ["cd", "ed", "fg", "ga", "ab"];
+const blackkeys = ["cd", "de", "fg", "ga", "ab"];
 
 var thisthing = 0;
 
@@ -17,42 +17,41 @@ function wrong() {
 }
 
 function Checker(array, index, answer) {
+  var isSharps = false;
+  var isFlats = false;
   Data.correctNote = array[index];
-  console.log(array[index]);
 
   if (array[index].substring(0, 1) === "^") {
-    Data.isSharp = true;
+    isSharps = true;
+  }
+
+  if (array[index].substring(1, 2) === "_") {
+    isFlats = true;
+  }
+
+  if (isSharps === true) {
     terribleSharpChecker(array[index].substring(1, 2), answer);
+  } else if (isFlats === true) {
+    terribleFlatChecker(array[index].substring(1, 2), answer);
   }
-
-  if (array[index] === "_") {
-    Data.isFlat = true;
+  var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
+  if (tempAnswer) {
+    correct();
+  } else {
+    wrong();
   }
-
-  if (Data.isSharp === false || Data.isFlat === false) {
-    var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
-    if (tempAnswer) {
-      correct();
-    } else {
-      wrong();
-    }
-    index++;
-  } else if (Data.isSharp === true) {
-    index++;
-    terribleSharpChecker(array[index], answer);
-  }
+  index++;
 }
 
 function terribleSharpChecker(note, answer) {
-  console.log("answer is a sharp");
   var capNote = note.toUpperCase();
   var answerNote = answer.toUpperCase();
 
-  console.log(capNote, answerNote);
+  Data.correctNote = `${capNote} Sharp`;
 
   if (capNote === "C" && answerNote === "CD") {
     correct();
-  } else if (capNote === "D" && answerNote === "ED") {
+  } else if (capNote === "D" && answerNote === "DE") {
     correct();
   } else if (capNote === "E" && answerNote === "F") {
     correct();
@@ -63,6 +62,31 @@ function terribleSharpChecker(note, answer) {
   } else if (capNote === "A" && answerNote === "AB") {
     correct();
   } else if (capNote === "B" && answerNote === "C") {
+    correct();
+  } else {
+    wrong();
+  }
+}
+
+function terribleFlatChecker(note, answer) {
+  var capNote = note.toUpperCase();
+  var answerNote = note.toUpperCase();
+
+  Data.correctNote = `${capNote} Sharp`;
+
+  if (capNote === "C" && answerNote === "B") {
+    correct();
+  } else if (capNote === "D" && answerNote === "CD") {
+    correct();
+  } else if (capNote === "E" && answerNote === "DE") {
+    correct();
+  } else if (capNote === "F" && answerNote === "E") {
+    correct();
+  } else if (capNote === "G" && answerNote === "FG") {
+    correct();
+  } else if (capNote === "A" && answerNote === "GA") {
+    correct();
+  } else if (capNote === "B" && answerNote === "AB") {
     correct();
   } else {
     wrong();

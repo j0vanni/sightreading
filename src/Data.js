@@ -8,4 +8,5 @@ export default {
   rightorWrong: "placeholder",
   isSharp: false,
   isFlat: false,
+  isTreble: false,
 };
