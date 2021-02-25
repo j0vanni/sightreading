@@ -16,6 +16,13 @@ function wrong() {
   Data.rightorWrong = "Wrong.";
 }
 
+function marking(sharpVar, flatVar) {
+  var initialSpacing = 5;
+  var spacingSplice = 2;
+  if (sharpVar === false && flatVar === false) {
+  }
+}
+
 function Checker(array, index, answer) {
   var isSharps = false;
   var isFlats = false;

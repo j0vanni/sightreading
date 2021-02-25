@@ -9,4 +9,5 @@ export default {
   isSharp: false,
   isFlat: false,
   isTreble: false,
+  afterNote: "2",
 };
