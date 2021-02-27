@@ -38,14 +38,6 @@ function marking(index) {
   );
 
   Data.lastSpacing = Data.notesDisplayedOther[index].length + Data.lastSpacing;
-
-  console.log(Data.notesDisplayedString);
-  console.log(
-    Data.notesDisplayed[index],
-    Data.notesDisplayedOther[index],
-    Data.notesDisplayedOther[index].length,
-    index
-  );
 }
 function Checker(array, index, answer) {
   marking(index);

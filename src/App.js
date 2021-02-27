@@ -5,7 +5,6 @@ import Piano from "./Piano";
 import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
 import { Notation } from "react-abc";
 
-const noteslist = ["a", "b", "c"];
 const notesListed = [
   "a",
   "b",
@@ -24,6 +23,7 @@ const notesListed = [
 ];
 
 var wrongorRight = "----";
+var scaling = (0.442 * window.innerWidth + 151.198) / 400;
 
 //add !mark! before the note to hightlight it
 //would be good for the user to keep track on which note
@@ -117,8 +117,8 @@ function createRandomNotesArray(amount) {
     }
   }
   Data.indexd = 0;
-  console.log(Data.notesDisplayedString);
 }
+console.log(window.innerWidth, scaling);
 createRandomNotesArray(10);
 
 class App extends React.Component {
@@ -150,7 +150,7 @@ class App extends React.Component {
         >
           <Notation
             notation={this.state.notestoDisplay}
-            engraverParams={{ scale: window.innerWidth / 500 }}
+            engraverParams={{ scale: scaling }}
           />
         </div>
 
