@@ -23,40 +23,6 @@ const notesListed = [
   "G",
 ];
 
-const notesListedSharps = [
-  "^a",
-  "^b",
-  "^c",
-  "^d",
-  "^e",
-  "^f",
-  "^g",
-  "^A",
-  "^B",
-  "^C",
-  "^D",
-  "^E",
-  "^F",
-  "^G",
-];
-
-const notesListedFlats = [
-  "_a",
-  "_b",
-  "_c",
-  "_d",
-  "_e",
-  "_f",
-  "_g",
-  "_A",
-  "_B",
-  "_C",
-  "_D",
-  "_E",
-  "_F",
-  "_G",
-];
-
 var wrongorRight = "----";
 
 //add !mark! before the note to hightlight it
@@ -69,15 +35,18 @@ var wrongorRight = "----";
 // ,,2 after notes to make it work
 
 function createRandomNotesArray(amount) {
+  Data.lastSpacing = 0;
+  Data.afterNoteDone = false;
   Data.opacity = 0;
   Data.notesDisplayed = [];
-  Data.notesDisplayedString = "!mark!";
+  Data.notesDisplayedOther = [];
 
   if (Data.isTreble) {
     Data.afterNote = ",,2";
     //initial 21?
     Data.notesDisplayedString = "V: V3 clef=bass\n[V: V3]!mark!";
   } else {
+    Data.notesDisplayedString = "!mark!";
     Data.afterNote = "2";
   }
 
@@ -85,57 +54,65 @@ function createRandomNotesArray(amount) {
     for (var i = 0; i < amount; i++) {
       var rand = Math.floor(Math.random() * notesListed.length);
       Data.notesDisplayed.push(notesListed[rand]);
-      Data.notesDisplayedString += notesListed[rand];
-      Data.notesDisplayedString += Data.afterNote;
+      Data.notesDisplayedOther.push(notesListed[rand] + Data.afterNote);
+      Data.notesDisplayedString += notesListed[rand] + Data.afterNote;
     }
   } else if (Data.isFlat === true && Data.isSharp === false) {
     for (var i = 0; i < amount; i++) {
       var randDecision = Math.floor(Math.random() * 2);
       var rand = Math.floor(Math.random() * notesListed.length);
-      var randFlats = Math.floor(Math.random() * notesListedFlats.length);
+      var randFlats = Math.floor(Math.random() * notesListed.length);
       if (randDecision === 0) {
+        var rand = Math.floor(Math.random() * notesListed.length);
         Data.notesDisplayed.push(notesListed[rand]);
-        Data.notesDisplayedString += notesListed[rand];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayedOther.push(notesListed[rand] + Data.afterNote);
+        Data.notesDisplayedString += notesListed[rand] + Data.afterNote;
       } else {
-        Data.notesDisplayed.push(notesListedFlats[randFlats]);
-        Data.notesDisplayedString += notesListedFlats[randFlats];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayed.push(notesListed[randFlats]);
+        Data.notesDisplayedOther.push("_" + notesListed[rand] + Data.afterNote);
+        Data.notesDisplayedString += "_" + notesListed[rand] + Data.afterNote;
       }
     }
   } else if (Data.isFlat === false && Data.isSharp === true) {
     for (var i = 0; i < amount; i++) {
       var randDecision = Math.floor(Math.random() * 2);
       var rand = Math.floor(Math.random() * notesListed.length);
-      var randSharps = Math.floor(Math.random() * notesListedSharps.length);
+      var randSharps = Math.floor(Math.random() * notesListed.length);
       if (randDecision === 0) {
         Data.notesDisplayed.push(notesListed[rand]);
-        Data.notesDisplayedString += notesListed[rand];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayedOther.push(notesListed[rand] + Data.afterNote);
+        Data.notesDisplayedString += notesListed[rand] + Data.afterNote;
       } else {
-        Data.notesDisplayed.push(notesListedSharps[randSharps]);
-        Data.notesDisplayedString += notesListedSharps[randSharps];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayed.push(notesListed[randSharps]);
+        Data.notesDisplayedOther.push(
+          "^" + notesListed[randSharps] + Data.afterNote
+        );
+        Data.notesDisplayedString +=
+          "^" + notesListed[randSharps] + Data.afterNote;
       }
     }
   } else {
     for (var i = 0; i < amount; i++) {
       var randDecision = Math.floor(Math.random() * 3);
       var rand = Math.floor(Math.random() * notesListed.length);
-      var randSharps = Math.floor(Math.random() * notesListedSharps.length);
-      var randFlats = Math.floor(Math.random() * notesListedFlats.length);
+      var randSharps = Math.floor(Math.random() * notesListed.length);
+      var randFlats = Math.floor(Math.random() * notesListed.length);
       if (randDecision === 0) {
         Data.notesDisplayed.push(notesListed[rand]);
+        Data.notesDisplayedOther.push(notesListed[rand] + Data.afterNote);
         Data.notesDisplayedString += notesListed[rand];
         Data.notesDisplayedString += Data.afterNote;
       } else if (randDecision === 1) {
-        Data.notesDisplayed.push(notesListedSharps[randSharps]);
-        Data.notesDisplayedString += notesListedSharps[randSharps];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayed.push(notesListed[randSharps]);
+        Data.notesDisplayedOther.push(
+          "^" + notesListed[randSharps] + Data.afterNote
+        );
+        Data.notesDisplayedString +=
+          "^" + notesListed[randSharps] + Data.afterNote;
       } else {
-        Data.notesDisplayed.push(notesListedFlats[randFlats]);
-        Data.notesDisplayedString += notesListedFlats[randFlats];
-        Data.notesDisplayedString += Data.afterNote;
+        Data.notesDisplayed.push(notesListed[randFlats]);
+        Data.notesDisplayedOther.push("_" + notesListed[rand] + Data.afterNote);
+        Data.notesDisplayedString += "_" + notesListed[rand] + Data.afterNote;
       }
     }
   }
@@ -205,6 +182,7 @@ class App extends React.Component {
             this.setState({
               opacity: Data.opacity,
               rightorWrong: Data.rightorWrong,
+              notestoDisplay: Data.notesDisplayedString,
             })
           }
         >

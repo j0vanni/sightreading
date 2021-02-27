@@ -16,23 +16,47 @@ function wrong() {
   Data.rightorWrong = "Wrong.";
 }
 
-function marking(sharpVar, flatVar) {
-  var initialSpacing = 5;
-  var spacingSplice = 2;
-  if (sharpVar === false && flatVar === false) {
+String.prototype.insert = function (index, string) {
+  if (index > 0) {
+    return this.substring(0, index) + string + this.substr(index);
   }
-}
+  return string + this;
+};
 
+function marking(index) {
+  var newNotesDisplayed = Data.notesDisplayedString.replace("!mark!", "");
+  Data.notesDisplayedString = newNotesDisplayed;
+  var initialSpacing = 0;
+
+  if (Data.isTreble === true) {
+    initialSpacing = 23;
+  }
+
+  Data.notesDisplayedString = Data.notesDisplayedString.insert(
+    initialSpacing + Data.notesDisplayedOther[index].length + Data.lastSpacing,
+    "!mark!"
+  );
+
+  Data.lastSpacing = Data.notesDisplayedOther[index].length + Data.lastSpacing;
+
+  console.log(Data.notesDisplayedString);
+  console.log(
+    Data.notesDisplayed[index],
+    Data.notesDisplayedOther[index],
+    Data.notesDisplayedOther[index].length,
+    index
+  );
+}
 function Checker(array, index, answer) {
+  marking(index);
+
   var isSharps = false;
   var isFlats = false;
   Data.correctNote = array[index];
 
   if (array[index].substring(0, 1) === "^") {
     isSharps = true;
-  }
-
-  if (array[index].substring(1, 2) === "_") {
+  } else if (array[index].substring(1, 2) === "_") {
     isFlats = true;
   }
 

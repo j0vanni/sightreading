@@ -1,5 +1,6 @@
 export default {
   notesDisplayed: [],
+  notesDisplayedOther: [],
   notesDisplayedString: "",
   correctNote: "placeholder",
   pianoClickedKey: "",
@@ -10,4 +11,5 @@ export default {
   isFlat: false,
   isTreble: false,
   afterNote: "2",
+  lastSpacing: 0,
 };
