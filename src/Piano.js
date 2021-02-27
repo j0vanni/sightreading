@@ -26,10 +26,14 @@ String.prototype.insert = function (index, string) {
 function marking(index) {
   var newNotesDisplayed = Data.notesDisplayedString.replace("!mark!", "");
   Data.notesDisplayedString = newNotesDisplayed;
-  var initialSpacing = 0;
+  var initialSpacing = 10;
+
+  if ((index + 1) % 4 == 0 && index !== 0) {
+    Data.lastSpacing++;
+  }
 
   if (Data.isTreble === true) {
-    initialSpacing = 23;
+    initialSpacing = 33;
   }
 
   Data.notesDisplayedString = Data.notesDisplayedString.insert(

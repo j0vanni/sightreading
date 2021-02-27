@@ -35,6 +35,7 @@ var scaling = (0.442 * window.innerWidth + 151.198) / 400;
 // ,,2 after notes to make it work
 
 function createRandomNotesArray(amount) {
+  var firstIter = false;
   Data.lastSpacing = 0;
   Data.afterNoteDone = false;
   Data.opacity = 0;
@@ -44,14 +45,21 @@ function createRandomNotesArray(amount) {
   if (Data.isTreble) {
     Data.afterNote = ",,2";
     //initial 21?
-    Data.notesDisplayedString = "V: V3 clef=bass\n[V: V3]!mark!";
+    Data.notesDisplayedString = "[M: 4/4]\nV: V3 clef=bass\n[V: V3]";
   } else {
-    Data.notesDisplayedString = "!mark!";
+    Data.notesDisplayedString = "[M: 4/4]\n";
     Data.afterNote = "2";
   }
 
   if (Data.isFlat === false && Data.isSharp === false) {
     for (var i = 0; i < amount; i++) {
+      if (i % 4 == 0) {
+        Data.notesDisplayedString += "|";
+        if (!firstIter) {
+          Data.notesDisplayedString += "!mark!";
+          firstIter = true;
+        }
+      }
       var rand = Math.floor(Math.random() * notesListed.length);
       Data.notesDisplayed.push(notesListed[rand]);
       Data.notesDisplayedOther.push(notesListed[rand] + Data.afterNote);
@@ -59,6 +67,13 @@ function createRandomNotesArray(amount) {
     }
   } else if (Data.isFlat === true && Data.isSharp === false) {
     for (var i = 0; i < amount; i++) {
+      if (i % 4 == 0) {
+        Data.notesDisplayedString += "|";
+        if (!firstIter) {
+          Data.notesDisplayedString += "!mark!";
+          firstIter = true;
+        }
+      }
       var randDecision = Math.floor(Math.random() * 2);
       var rand = Math.floor(Math.random() * notesListed.length);
       var randFlats = Math.floor(Math.random() * notesListed.length);
@@ -75,6 +90,13 @@ function createRandomNotesArray(amount) {
     }
   } else if (Data.isFlat === false && Data.isSharp === true) {
     for (var i = 0; i < amount; i++) {
+      if (i % 4 == 0) {
+        Data.notesDisplayedString += "|";
+        if (!firstIter) {
+          Data.notesDisplayedString += "!mark!";
+          firstIter = true;
+        }
+      }
       var randDecision = Math.floor(Math.random() * 2);
       var rand = Math.floor(Math.random() * notesListed.length);
       var randSharps = Math.floor(Math.random() * notesListed.length);
@@ -93,6 +115,13 @@ function createRandomNotesArray(amount) {
     }
   } else {
     for (var i = 0; i < amount; i++) {
+      if (i % 4 == 0) {
+        Data.notesDisplayedString += "|";
+        if (!firstIter) {
+          Data.notesDisplayedString += "!mark!";
+          firstIter = true;
+        }
+      }
       var randDecision = Math.floor(Math.random() * 3);
       var rand = Math.floor(Math.random() * notesListed.length);
       var randSharps = Math.floor(Math.random() * notesListed.length);
@@ -118,8 +147,8 @@ function createRandomNotesArray(amount) {
   }
   Data.indexd = 0;
 }
-console.log(window.innerWidth, scaling);
-createRandomNotesArray(10);
+
+createRandomNotesArray(12);
 
 class App extends React.Component {
   constructor(props) {
@@ -228,14 +257,14 @@ class App extends React.Component {
                   onChange={() => (Data.isTreble = !Data.isTreble)}
                 ></Checkbox>
               }
-              label="Treble"
+              label="Bass Clef"
             ></FormControlLabel>
           </div>
           <div>
             <Button
               variant="contained"
               onClick={() => {
-                createRandomNotesArray(10);
+                createRandomNotesArray(12);
                 this.setState({ notestoDisplay: Data.notesDisplayedString });
               }}
             >
