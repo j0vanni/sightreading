@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/Sight-Reading/static/css/main.c743c966.chunk.css",
-    "main.js": "/Sight-Reading/static/js/main.99ab6f91.chunk.js",
-    "main.js.map": "/Sight-Reading/static/js/main.99ab6f91.chunk.js.map",
-    "runtime-main.js": "/Sight-Reading/static/js/runtime-main.d86a6e4a.js",
-    "runtime-main.js.map": "/Sight-Reading/static/js/runtime-main.d86a6e4a.js.map",
-    "static/css/2.d1b1f452.chunk.css": "/Sight-Reading/static/css/2.d1b1f452.chunk.css",
-    "static/js/2.292b2960.chunk.js": "/Sight-Reading/static/js/2.292b2960.chunk.js",
-    "static/js/2.292b2960.chunk.js.map": "/Sight-Reading/static/js/2.292b2960.chunk.js.map",
-    "index.html": "/Sight-Reading/index.html",
-    "static/css/2.d1b1f452.chunk.css.map": "/Sight-Reading/static/css/2.d1b1f452.chunk.css.map",
-    "static/css/main.c743c966.chunk.css.map": "/Sight-Reading/static/css/main.c743c966.chunk.css.map",
-    "static/js/2.292b2960.chunk.js.LICENSE.txt": "/Sight-Reading/static/js/2.292b2960.chunk.js.LICENSE.txt",
-    "static/media/style.css": "/Sight-Reading/static/media/step-backward.668fe580.svg"
+    "main.css": "/sightreading/static/css/main.c743c966.chunk.css",
+    "main.js": "/sightreading/static/js/main.99ab6f91.chunk.js",
+    "main.js.map": "/sightreading/static/js/main.99ab6f91.chunk.js.map",
+    "runtime-main.js": "/sightreading/static/js/runtime-main.0261d60f.js",
+    "runtime-main.js.map": "/sightreading/static/js/runtime-main.0261d60f.js.map",
+    "static/css/2.e2516ab3.chunk.css": "/sightreading/static/css/2.e2516ab3.chunk.css",
+    "static/js/2.292b2960.chunk.js": "/sightreading/static/js/2.292b2960.chunk.js",
+    "static/js/2.292b2960.chunk.js.map": "/sightreading/static/js/2.292b2960.chunk.js.map",
+    "index.html": "/sightreading/index.html",
+    "static/css/2.e2516ab3.chunk.css.map": "/sightreading/static/css/2.e2516ab3.chunk.css.map",
+    "static/css/main.c743c966.chunk.css.map": "/sightreading/static/css/main.c743c966.chunk.css.map",
+    "static/js/2.292b2960.chunk.js.LICENSE.txt": "/sightreading/static/js/2.292b2960.chunk.js.LICENSE.txt",
+    "static/media/style.css": "/sightreading/static/media/step-backward.668fe580.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d86a6e4a.js",
-    "static/css/2.d1b1f452.chunk.css",
+    "static/js/runtime-main.0261d60f.js",
+    "static/css/2.e2516ab3.chunk.css",
     "static/js/2.292b2960.chunk.js",
     "static/css/main.c743c966.chunk.css",
     "static/js/main.99ab6f91.chunk.js"
