@@ -23,7 +23,7 @@ const notesListed = [
 ];
 
 var wrongorRight = "----";
-var scaling = (0.442 * window.innerWidth + 151.198) / 400;
+var scaling = (0.25 * window.innerWidth + 151.198) / 400;
 
 //add !mark! before the note to hightlight it
 //would be good for the user to keep track on which note
@@ -206,7 +206,10 @@ class App extends React.Component {
           {Data.correctNote.toUpperCase()}
         </p>
         <div
-          style={{ display: "flex", justifyContent: "center" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
           onClick={() =>
             this.setState({
               opacity: Data.opacity,
