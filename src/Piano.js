@@ -28,7 +28,7 @@ function marking(index) {
   Data.notesDisplayedString = newNotesDisplayed;
   var initialSpacing = 10;
 
-  if ((index + 1) % 4 == 0 && index !== 0) {
+  if ((index + 1) % 4 === 0 && index !== 0) {
     Data.lastSpacing++;
   }
 
@@ -48,21 +48,22 @@ function Checker(array, index, answer) {
 
   var isSharps = false;
   var isFlats = false;
-  Data.correctNote = array[index];
+  var replace = array[index].replace("2", "");
+  Data.correctNote = array[index].replace("2", "");
 
   if (array[index].substring(0, 1) === "^") {
     isSharps = true;
-  } else if (array[index].substring(1, 2) === "_") {
+  } else if (array[index].substring(0, 1) === "_") {
     isFlats = true;
   }
 
   if (isSharps === true) {
-    terribleSharpChecker(array[index].substring(1, 2), answer);
+    terribleSharpChecker(replace, answer);
   } else if (isFlats === true) {
-    terribleFlatChecker(array[index].substring(1, 2), answer);
-  }
-  var tempAnswer = answer.toUpperCase() === array[index].toUpperCase();
-  if (tempAnswer) {
+    terribleFlatChecker(replace, answer);
+  } else if (
+    answer.toUpperCase() === array[index].replace("2", "").toUpperCase()
+  ) {
     correct();
   } else {
     wrong();
@@ -71,7 +72,7 @@ function Checker(array, index, answer) {
 }
 
 function terribleSharpChecker(note, answer) {
-  var capNote = note.toUpperCase();
+  var capNote = note.replace("^", "").toUpperCase();
   var answerNote = answer.toUpperCase();
 
   Data.correctNote = `${capNote} Sharp`;
@@ -96,10 +97,10 @@ function terribleSharpChecker(note, answer) {
 }
 
 function terribleFlatChecker(note, answer) {
-  var capNote = note.toUpperCase();
-  var answerNote = note.toUpperCase();
+  var capNote = note.replace("_", "").toUpperCase();
+  var answerNote = answer.toUpperCase();
 
-  Data.correctNote = `${capNote} Sharp`;
+  Data.correctNote = `${capNote} Flat`;
 
   if (capNote === "C" && answerNote === "B") {
     correct();
@@ -130,7 +131,7 @@ function godPleaseWork(count) {
 function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
-  Checker(Data.notesDisplayed, Data.indexd, Data.pianoClickedKey);
+  Checker(Data.notesDisplayedOther, Data.indexd, Data.pianoClickedKey);
   Data.indexd++;
   Data.opacity = 1;
 }

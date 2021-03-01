@@ -146,6 +146,9 @@ function createRandomNotesArray(amount) {
     }
   }
   Data.indexd = 0;
+  console.log(Data.notesDisplayedString);
+  console.log(Data.notesDisplayedOther);
+  console.log(Data.notesDisplayed);
 }
 
 createRandomNotesArray(12);
