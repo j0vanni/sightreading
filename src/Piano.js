@@ -49,7 +49,7 @@ function Checker(array, index, answer) {
   var isSharps = false;
   var isFlats = false;
   var replace = array[index].replace("2", "");
-  Data.correctNote = array[index].replace("2", "");
+  Data.correctNote = replace.replace(",,", "");
 
   if (array[index].substring(0, 1) === "^") {
     isSharps = true;
@@ -58,12 +58,10 @@ function Checker(array, index, answer) {
   }
 
   if (isSharps === true) {
-    terribleSharpChecker(replace, answer);
+    terribleSharpChecker(replace.replace(",,", ""), answer);
   } else if (isFlats === true) {
-    terribleFlatChecker(replace, answer);
-  } else if (
-    answer.toUpperCase() === array[index].replace("2", "").toUpperCase()
-  ) {
+    terribleFlatChecker(replace.replace(",,", ""), answer);
+  } else if (answer.toUpperCase() === replace.replace(",,", "").toUpperCase()) {
     correct();
   } else {
     wrong();
