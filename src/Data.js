@@ -12,4 +12,5 @@ export default {
   isTreble: false,
   afterNote: "2",
   lastSpacing: 0,
+  noteAmount: 12,
 };

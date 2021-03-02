@@ -34,11 +34,13 @@ var scaling = (0.25 * window.innerWidth + 151.198) / 400;
 //add (V: V3 clef=bass\n[V: V3]) at start of string to make treble also add
 // ,,2 after notes to make it work
 
-function createRandomNotesArray(amount) {
+function createRandomNotesArray(amount, redone) {
+  if (redone === false) {
+    Data.opacity = 0;
+  }
   var firstIter = false;
   Data.lastSpacing = 0;
   Data.afterNoteDone = false;
-  Data.opacity = 0;
   Data.notesDisplayed = [];
   Data.notesDisplayedOther = [];
 
@@ -146,12 +148,9 @@ function createRandomNotesArray(amount) {
     }
   }
   Data.indexd = 0;
-  console.log(Data.notesDisplayedString);
-  console.log(Data.notesDisplayedOther);
-  console.log(Data.notesDisplayed);
 }
 
-createRandomNotesArray(12);
+createRandomNotesArray(Data.noteAmount, false);
 
 class App extends React.Component {
   constructor(props) {
@@ -161,6 +160,21 @@ class App extends React.Component {
       rightorWrong: Data.rightorWrong,
       notestoDisplay: Data.notesDisplayedString,
     };
+  }
+
+  onPianoClick() {
+    if (Data.indexd === Data.noteAmount) {
+      createRandomNotesArray(Data.noteAmount, true);
+    }
+    this.setState({
+      opacity: Data.opacity,
+      rightorWrong: Data.rightorWrong,
+      notestoDisplay: Data.notesDisplayedString,
+    });
+  }
+
+  findOut() {
+    console.log("index:", Data.indexd, ", note index:", Data.noteAmount);
   }
 
   render() {
@@ -213,13 +227,7 @@ class App extends React.Component {
             display: "flex",
             justifyContent: "center",
           }}
-          onClick={() =>
-            this.setState({
-              opacity: Data.opacity,
-              rightorWrong: Data.rightorWrong,
-              notestoDisplay: Data.notesDisplayedString,
-            })
-          }
+          onClick={() => this.onPianoClick()}
         >
           <Piano />
         </div>
