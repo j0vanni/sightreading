@@ -130,7 +130,6 @@ function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
   Checker(Data.notesDisplayedOther, Data.indexd, Data.pianoClickedKey);
-  Data.indexd++;
   Data.opacity = 1;
 }
 
