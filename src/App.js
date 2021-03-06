@@ -173,10 +173,6 @@ class App extends React.Component {
     });
   }
 
-  findOut() {
-    console.log("index:", Data.indexd, ", note index:", Data.noteAmount);
-  }
-
   render() {
     return (
       <div style={{ color: "white" }}>
@@ -250,7 +246,7 @@ class App extends React.Component {
                 ></Checkbox>
               }
               label="Include Sharps"
-            ></FormControlLabel>
+            />
             <FormControlLabel
               control={
                 <Checkbox
@@ -261,7 +257,7 @@ class App extends React.Component {
                 ></Checkbox>
               }
               label="Include Flats"
-            ></FormControlLabel>
+            />
             <FormControlLabel
               control={
                 <Checkbox
@@ -272,7 +268,21 @@ class App extends React.Component {
                 ></Checkbox>
               }
               label="Bass Clef"
-            ></FormControlLabel>
+            />
+          </div>
+          <div>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked
+                  color="primary"
+                  inputProps={{ "aria-label": "secondary checkbox" }}
+                  style={{ color: "white" }}
+                  onChange={() => (Data.wrongNotes = !Data.wrongNotes)}
+                ></Checkbox>
+              }
+              label="Keep Going if Wrong"
+            />
           </div>
           <div>
             <Button

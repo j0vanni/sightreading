@@ -44,8 +44,6 @@ function marking(index) {
   Data.lastSpacing = Data.notesDisplayedOther[index].length + Data.lastSpacing;
 }
 function Checker(array, index, answer) {
-  marking(index);
-
   var isSharps = false;
   var isFlats = false;
   var replace = array[index].replace("2", "");
@@ -66,7 +64,14 @@ function Checker(array, index, answer) {
   } else {
     wrong();
   }
-  index++;
+
+  if (Data.rightorWrong === "Wrong." && !Data.wrongNotes) {
+  } else {
+    marking(index);
+
+    index++;
+    Data.indexd++;
+  }
 }
 
 function terribleSharpChecker(note, answer) {

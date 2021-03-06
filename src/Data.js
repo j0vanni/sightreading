@@ -13,4 +13,5 @@ export default {
   afterNote: "2",
   lastSpacing: 0,
   noteAmount: 12,
+  wrongNotes: true,
 };
