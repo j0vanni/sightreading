@@ -274,7 +274,7 @@ class App extends React.Component {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked
+                  defaultChecked
                   color="primary"
                   inputProps={{ "aria-label": "secondary checkbox" }}
                   style={{ color: "white" }}

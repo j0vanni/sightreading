@@ -1,5 +1,17 @@
 import React from "react";
 import Data from "./Data";
+import a5 from "./note sounds/a5.mp3";
+import b5 from "./note sounds/b5.mp3";
+import c4 from "./note sounds/c4.mp3";
+import d4 from "./note sounds/d4.mp3";
+import e4 from "./note sounds/e4.mp3";
+import f4 from "./note sounds/f4.mp3";
+import g4 from "./note sounds/g4.mp3";
+import adash5 from "./note sounds/a-5.mp3";
+import cdash4 from "./note sounds/c-4.mp3";
+import ddash4 from "./note sounds/d-4.mp3";
+import fdash4 from "./note sounds/f-4.mp3";
+import gdash4 from "./note sounds/g-4.mp3";
 
 const notes = ["c", "d", "e", "f", "g", "a", "b"];
 const blackkeys = ["cd", "de", "fg", "ga", "ab"];
@@ -134,42 +146,95 @@ function godPleaseWork(count) {
 function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
+  playAudio(Data.pianoClickedKey);
   Checker(Data.notesDisplayedOther, Data.indexd, Data.pianoClickedKey);
   Data.opacity = 1;
 }
 
-function Piano(props) {
-  return (
-    <div style={{ display: "flex", position: "absolute" }}>
-      {notes.map((item) => {
-        return (
-          <div key={item}>
+function playAudio(audioFile) {
+  let audio;
+  switch (audioFile) {
+    case "a":
+      audio = new Audio(a5);
+      break;
+    case "b":
+      audio = new Audio(b5);
+      break;
+    case "c":
+      audio = new Audio(c4);
+      break;
+    case "d":
+      audio = new Audio(d4);
+      break;
+    case "e":
+      audio = new Audio(e4);
+      break;
+    case "f":
+      audio = new Audio(f4);
+      break;
+    case "g":
+      audio = new Audio(g4);
+      break;
+    case "cd":
+      audio = new Audio(cdash4);
+      break;
+    case "de":
+      audio = new Audio(ddash4);
+      break;
+    case "fg":
+      audio = new Audio(fdash4);
+      break;
+    case "ga":
+      audio = new Audio(gdash4);
+      break;
+    case "ab":
+      audio = new Audio(adash5);
+      break;
+  }
+  audio.play(audio);
+}
+
+class Piano extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      whitekeyColor: "white",
+      blackkeyColor: "black",
+    };
+  }
+  render() {
+    return (
+      <div style={{ display: "flex", position: "absolute" }}>
+        {notes.map((item) => {
+          return (
+            <div key={item}>
+              <div
+                style={StyleSheet.whitekeys}
+                onClick={() => setPianoClick(item)}
+              />
+            </div>
+          );
+        })}
+        {blackkeys.map((item, key) => {
+          return (
             <div
-              style={StyleSheet.whitekeys}
-              onClick={() => setPianoClick(item)}
-            />
-          </div>
-        );
-      })}
-      {blackkeys.map((item, key) => {
-        return (
-          <div
-            style={{
-              position: "absolute",
-              left: `${godPleaseWork(key + 1)}px`,
-            }}
-            key={item}
-          >
-            <div
-              style={StyleSheet.blackkeys}
-              onClick={() => setPianoClick(item)}
-            />
-            {item.at}
-          </div>
-        );
-      })}
-    </div>
-  );
+              style={{
+                position: "absolute",
+                left: `${godPleaseWork(key + 1)}px`,
+              }}
+              key={item}
+            >
+              <div
+                style={StyleSheet.blackkeys}
+                onClick={() => setPianoClick(item)}
+              />
+              {item.at}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
 }
 
 const StyleSheet = {
