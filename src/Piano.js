@@ -146,7 +146,7 @@ function godPleaseWork(count) {
 function setPianoClick(item) {
   Data.pianoClickedKey = "";
   Data.pianoClickedKey = item;
-  playAudio(Data.pianoClickedKey);
+  //playAudio(Data.pianoClickedKey);
   Checker(Data.notesDisplayedOther, Data.indexd, Data.pianoClickedKey);
   Data.opacity = 1;
 }
